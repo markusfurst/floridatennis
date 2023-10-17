@@ -27,7 +27,7 @@ if st.sidebar.checkbox('Log in'):
     time.sleep(1)
     container.empty()
     
-    df=pd.read_csv('forcedecks-test-export-10_11_2023.csv', parse_dates=["Date"])
+    df=pd.read_csv('forcedecks-test-export-10_17_2023 (1).csv', parse_dates=["Date"])
 
     #remove columns and change date
     df_updated=df.drop(['ExternalId','Test Type','Time','BW [KG]','Reps','Tags','Additional Load [lb]'], axis=1)
