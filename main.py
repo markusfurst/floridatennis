@@ -13,7 +13,7 @@ from plotly import graph_objs as go
 image = Image.open('florida.png')
 imgtab = Image.open('gatorlogo.png')
 
-st.set_page_config(page_title='Florida Golf',page_icon=imgtab,layout='wide')
+st.set_page_config(page_title='Florida Tennis',page_icon=imgtab,layout='wide')
 
 st.sidebar.image(image)
 
