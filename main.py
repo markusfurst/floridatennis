@@ -36,7 +36,7 @@ if st.sidebar.checkbox('Log in'):
     #sidebar
 
     st.sidebar.header('Navigation')
-    options = st.sidebar.radio('Dashboards:', options=['Readiness', 'Performance','Interactive Graphs','Assymetries', 'Leaderboard', 'Forecast', 'Benchmarks', 'All Data'])    
+    options = st.sidebar.radio('Dashboards:', options=['Readiness', 'Performance','Interactive Graphs','Assymetries', 'Leaderboard', 'Forecast', 'All Data'])    
     
 
     name = st.sidebar.multiselect(
