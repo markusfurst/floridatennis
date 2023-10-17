@@ -406,123 +406,7 @@ if st.sidebar.checkbox('Log in'):
     peak_power_percentage = round(((peak_power_recent/peak_power)*100)-100)
     RSI_mod_percentage = round(((RSI_mod_recent/RSI_mod)*100)-100)
     conc_impulse_percentage = round(((conc_impulse_recent/conc_impulse)*100)-100)
-    ecc_impulse_percentage = round(((ecc_impulse_recent/ecc_impulse)*100)-100)
-
-    #std
-    jumpheight_std = int(df_selection["Jump Height (Flight Time) in Inches [in] "].std())
-    peakpower_std = int(df_selection["Peak Power / BM [W/kg] "].std())
-    RSImod_std = round(df_selection["RSI-modified [m/s] "].std(),2)
-    concimp_std = int(df_selection["Concentric Impulse [N s] "].std())
-    eccimp_std = int(df_selection["Eccentric Braking Impulse [N s] "].std())
-
-    #benchmarks
-    jumpheight_tscore = round(((((jump_height_recent - jump_height)/jumpheight_std)*10)+50))
-    peakpower_tscore = round(((((peak_power_recent - peak_power)/peakpower_std)*10)+50))
-    RSImod_tscore = round(((((RSI_mod_recent - RSI_mod)/RSImod_std)*10)+50))
-    concimp_tscore = round(((((conc_impulse_recent - conc_impulse_recent)/concimp_std)*10)+50))
-    eccimp_tscore = round(((((ecc_impulse_recent - ecc_impulse)/eccimp_std)*10)+50))
-    
-    #level 
-    def level_jumpheight(jumpheight_tscore):
-      if jumpheight_tscore >= 80:
-        return str(jumpheight_tscore) + " - " + "Excellent"
-      elif 70 < jumpheight_tscore < 80:
-        return str(jumpheight_tscore) + " - " + "Very Good"
-      elif 60 < jumpheight_tscore < 70:
-        return str(jumpheight_tscore) + " - " + "Good"
-      elif 55 < jumpheight_tscore < 60:
-        return str(jumpheight_tscore) + " - " + "Above Avg"
-      elif 45 < jumpheight_tscore < 55:
-        return str(jumpheight_tscore) + " - " + "Average"
-      elif 40 < jumpheight_tscore < 45:
-        return str(jumpheight_tscore) + " - " + "Below Avg"
-      elif 30 < jumpheight_tscore < 40:
-        return str(jumpheight_tscore) + " - " + "Poor"
-      elif 20 < jumpheight_tscore < 30:
-        return str(jumpheight_tscore) + " - " + "Very Poor"
-      elif jumpheight_tscore <= 20:
-        return str(jumpheight_tscore) + " - " + "Extremely Poor"
-
-    def level_peakpower(peakpower_tscore):
-      if peakpower_tscore >= 80:
-        return str(peakpower_tscore) + " - " + "Excellent"
-      elif 70 < peakpower_tscore < 80:
-        return str(peakpower_tscore) + " - " + "Very Good"
-      elif 60 < peakpower_tscore < 70:
-        return str(peakpower_tscore) + " - " + "Good"
-      elif 55 < peakpower_tscore < 60:
-        return str(peakpower_tscore) + " - " + "Above Avg"
-      elif 45 < peakpower_tscore < 55:
-        return str(peakpower_tscore) + " - " + "Average"
-      elif 40 < peakpower_tscore < 45:
-        return str(peakpower_tscore) + " - " + "Below Avg"
-      elif 30 < peakpower_tscore < 40:
-        return str(peakpower_tscore) + " - " + "Poor"
-      elif 20 < peakpower_tscore < 30:
-        return str(peakpower_tscore) + " - " + "Very Poor"
-      elif peakpower_tscore <= 20:
-        return str(peakpower_tscore) + " - " + "Extremely Poor"
- 
-    def level_RSImod(RSImod_tscore):
-      if RSImod_tscore >= 80:
-        return str(RSImod_tscore) + " - " + "Excellent"
-      elif 70 < RSImod_tscore < 80:
-        return str(RSImod_tscore) + " - " + "Very Good"
-      elif 60 < RSImod_tscore < 70:
-        return str(RSImod_tscore) + " - " + "Good"
-      elif 55 < RSImod_tscore < 60:
-        return str(RSImod_tscore) + " - " + "Above Avg"
-      elif 45 < RSImod_tscore < 55:
-        return str(RSImod_tscore) + " - " + "Average"
-      elif 40 < RSImod_tscore < 45:
-        return str(RSImod_tscore) + " - " + "Below Avg"
-      elif 30 < RSImod_tscore < 40:
-        return str(RSImod_tscore) + " - " + "Poor"
-      elif 20 < RSImod_tscore < 30:
-        return str(RSImod_tscore) + " - " + "Very Poor"
-      elif RSImod_tscore <= 20:
-        return str(RSImod_tscore) + " - " + "Extremely Poor"
-      
-    def level_concimp(concimp_tscore):
-      if concimp_tscore >= 80:
-        return str(concimp_tscore) + " - " + "Excellent"
-      elif 70 < concimp_tscore < 80:
-        return str(concimp_tscore) + " - " + "Very Good"
-      elif 60 < concimp_tscore < 70:
-        return str(concimp_tscore) + " - " + "Good"
-      elif 55 < concimp_tscore < 60:
-        return str(concimp_tscore) + " - " + "Above Avg"
-      elif 45 < concimp_tscore < 55:
-        return str(concimp_tscore) + " - " + "Average"
-      elif 40 < concimp_tscore < 45:
-        return str(concimp_tscore) + " - " + "Below Avg"
-      elif 30 < concimp_tscore < 40:
-        return str(concimp_tscore) + " - " + "Poor"
-      elif 20 < concimp_tscore < 30:
-        return str(concimp_tscore) + " - " + "Very Poor"
-      elif concimp_tscore <= 20:
-        return str(concimp_tscore) + " - " + "Extremely Poor"
-
-    def level_eccimp(eccimp_tscore):
-      if eccimp_tscore >= 80:
-        return str(eccimp_tscore) + " - " + "Excellent"
-      elif 70 < eccimp_tscore < 80:
-        return str(eccimp_tscore) + " - " + "Very Good"
-      elif 60 < eccimp_tscore < 70:
-        return str(eccimp_tscore) + " - " + "Good"
-      elif 55 < eccimp_tscore < 60:
-        return str(eccimp_tscore) + " - " + "Above Avg"
-      elif 45 < eccimp_tscore < 55:
-        return str(eccimp_tscore) + " - " + "Average"
-      elif 40 < eccimp_tscore < 45:
-        return str(eccimp_tscore) + " - " + "Below Avg"
-      elif 30 < eccimp_tscore < 40:
-        return str(eccimp_tscore) + " - " + "Poor"
-      elif 20 < eccimp_tscore < 30:
-        return str(eccimp_tscore) + " - " + "Very Poor"
-      elif eccimp_tscore <= 20:
-        return str(eccimp_tscore) + " - " + "Extremely Poor"
-        
+    ecc_impulse_percentage = round(((ecc_impulse_recent/ecc_impulse)*100)-100)     
 
     #functions for emojis Performance
 
@@ -1042,47 +926,6 @@ if st.sidebar.checkbox('Log in'):
       plot2=m.plot_components(forecast)
       st.write(plot2)
 
-
-
-    def benchmarks():
-        with open('style.css') as f:
-            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-        st.markdown("<h1 style='text-align: center; color: #00000;'>T-Score Benchmarks</h1>", unsafe_allow_html=True)
-        st.markdown("#####")
-
-        col1,col2,col3,col4,col5, = st.columns(5)
-        with col1:
-          st.markdown("###### Jump Height")
-          st.markdown("#####")
-          st.write(level_jumpheight(jumpheight_tscore))
-        with col2:
-          st.markdown("###### Peak Power")
-          st.markdown("#####")
-          st.write(level_peakpower(peakpower_tscore))
-        with col3:
-          st.markdown("###### RSI Mod")
-          st.markdown("#####")
-          st.write(level_RSImod(RSImod_tscore))
-        with col4:
-          st.markdown("###### Concentric Impulse")
-          st.markdown("#####")
-          st.write(level_concimp(concimp_tscore))
-        with col5:
-          st.markdown("###### Eccentric Impulse")
-          st.markdown("#####")
-          st.write(level_eccimp(eccimp_tscore))
-
-        st.write("Excellent >= 80")
-        st.write("Very Good 70-80")
-        st.write("Good 60-70")
-        st.write("Above Average 55-60")
-        st.write("Average 45-55")
-        st.write("Below Average 40-45")
-        st.write("Poor 30-40")
-        st.write("Very Poor 20-30")
-        st.write("Extremely Poor <=20")
-
     def all_data():
         st.header('All Data')
         st.markdown("#")
@@ -1102,8 +945,6 @@ if st.sidebar.checkbox('Log in'):
         leaderboard()
     elif options == 'Forecast':
         forecast()
-    elif options == 'Benchmarks':
-        benchmarks()
     elif options == 'All Data':
         all_data()
 
